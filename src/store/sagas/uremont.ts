@@ -15,7 +15,9 @@ const reviewID = sequence()
 
 export function fetchReviewsData(params: LoadReviewItemsParamsModel) {
   const body = new FormData()
-  const expectedFields = ['page', 'review_rating_from', 'review_rating_to'] as Array<keyof LoadReviewItemsParamsModel>
+  const expectedFields = ['page', 'page_size', 'review_rating_from', 'review_rating_to'] as Array<
+    keyof LoadReviewItemsParamsModel
+  >
 
   expectedFields.forEach((e) => {
     const value = params[e]

@@ -24,6 +24,7 @@ export interface UremontReviewModel {
 
 export interface LoadReviewItemsParamsModel {
   page: number
+  page_size: number
   review_rating_from: number
   review_rating_to: number
 }

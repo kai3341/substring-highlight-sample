@@ -37,6 +37,7 @@ export const Reviews: React.FC = () => {
     dispatch(
       loadReviewItems({
         page,
+        page_size: 10,
         review_rating_from: 1,
         review_rating_to: 10,
       })
