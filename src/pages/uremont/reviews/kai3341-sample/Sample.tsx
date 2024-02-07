@@ -1,6 +1,6 @@
-import React, { useState, useCallback, memo, useRef, useContext } from 'react'
-// import { useWMState /*, createMutableContext */ } from '@wrap-mutant/react'
-import * as WMR from '@wrap-mutant/react'
+import React, { useState, useCallback, memo, useRef, useContext, useMemo } from 'react'
+import { useWMState, createMutableContext } from '@wrap-mutant/react'
+import { RenderedArray } from '@wrap-mutant/react-rendered-array/array'
 import { UremontReviewModel, showAsyncToast } from 'src/actions'
 import { ReviewsItem } from 'src/components/Uremont/ReviewsItem'
 import { uremontHttpClient } from 'src/utils/experimental-http-client/v1'
@@ -12,19 +12,10 @@ import { groupLog } from 'src/utils/groupLog'
 
 import { sequence } from 'src/utils/sequence'
 
-import { createMutableContext } from './createMutableContext'
-import { RenderedArray } from './RenderedArray'
-
-const { useWMState } = WMR
-console.log(WMR)
-// console.log(WMR.createMutableContext)
-
 const _isDebugEnabled = true
 const _customPagesLimit = null as number | null
 
 const ReviewsItemCTX = createMutableContext({ updateItem: (diff: any) => {} })
-
-const reviewID = sequence()
 
 type TUremontPagination = {
   page: number
@@ -35,7 +26,7 @@ type TUremontPagination = {
 
 const ItemRender = (props: UremontReviewModel) => {
   const ctx = useContext(ReviewsItemCTX)
-  return <ReviewsItem item={props} key={props.id} updateItem={(diff) => ctx.updateItem(diff)} />
+  return <ReviewsItem item={props} updateItem={(diff) => ctx.updateItem(diff)} />
 }
 
 // const recordFactory = () => [] as UremontReviewModel[]
@@ -48,6 +39,7 @@ const recordFactory = () =>
 export const Sample = memo(() => {
   const dispatch = useDispatch()
   const [records, updateRecords] = useWMState(recordFactory, { wrap: false })
+  const reviewID = useMemo(sequence, [])
 
   const paginationRef = useRef<TUremontPagination>({
     page: 0, // NOTE: Will be mutated
@@ -132,12 +124,15 @@ export const Sample = memo(() => {
     getListPack()
   }, [setLoading, getListPack])
 
+  // useEffect(getListPack, [])
+
   const infiniteRef: React.RefObject<HTMLDivElement> = useInfiniteScroll({
     loading,
     hasNextPage,
     onLoadMore: startLoading,
     scrollContainer: 'window',
   })
+  // const infiniteRef: React.RefObject<HTMLDivElement> = React.createRef()
 
   const updateItem = useCallback(
     (diff: any) => {
@@ -150,12 +145,11 @@ export const Sample = memo(() => {
     [records, updateRecords]
   )
 
-  const r = records.render()
-  console.log(r)
+  // console.log(records)
 
   return (
     <div className={classes.stackWrapper} ref={infiniteRef}>
-      <ReviewsItemCTX.Provider value={{ updateItem }}>{r}</ReviewsItemCTX.Provider>
+      <ReviewsItemCTX.Provider value={{ updateItem }}>{records.render()}</ReviewsItemCTX.Provider>
       <div style={{ minHeight: '100px' }}>
         <Loader text={loading ? 'Loading...' : 'Done.'} />
       </div>
