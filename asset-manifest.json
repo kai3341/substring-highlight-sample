@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "https://kai3341.github.io/substring-highlight-sample/static/css/main.329eba90.css",
-    "main.js": "https://kai3341.github.io/substring-highlight-sample/static/js/main.b64c8932.js",
-    "index.html": "https://kai3341.github.io/substring-highlight-sample/index.html",
-    "main.329eba90.css.map": "https://kai3341.github.io/substring-highlight-sample/static/css/main.329eba90.css.map",
-    "main.b64c8932.js.map": "https://kai3341.github.io/substring-highlight-sample/static/js/main.b64c8932.js.map"
+    "main.css": "/substring-highlight-sample/static/css/main.329eba90.css",
+    "main.js": "/substring-highlight-sample/static/js/main.935b8e80.js",
+    "index.html": "/substring-highlight-sample/index.html",
+    "main.329eba90.css.map": "/substring-highlight-sample/static/css/main.329eba90.css.map",
+    "main.935b8e80.js.map": "/substring-highlight-sample/static/js/main.935b8e80.js.map"
   },
   "entrypoints": [
     "static/css/main.329eba90.css",
-    "static/js/main.b64c8932.js"
+    "static/js/main.935b8e80.js"
   ]
 }
