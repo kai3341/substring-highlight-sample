@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "https://kai3341.github.io/substring-highlight-sample/static/css/main.329eba90.css",
+    "main.js": "https://kai3341.github.io/substring-highlight-sample/static/js/main.18bf7989.js",
+    "index.html": "https://kai3341.github.io/substring-highlight-sample/index.html",
+    "main.329eba90.css.map": "https://kai3341.github.io/substring-highlight-sample/static/css/main.329eba90.css.map",
+    "main.18bf7989.js.map": "https://kai3341.github.io/substring-highlight-sample/static/js/main.18bf7989.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.329eba90.css",
+    "static/js/main.18bf7989.js"
+  ]
+}
