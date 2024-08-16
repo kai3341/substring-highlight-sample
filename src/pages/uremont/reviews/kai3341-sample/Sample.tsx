@@ -29,7 +29,6 @@ const ItemRender = (props: UremontReviewModel) => {
   return <ReviewsItem item={props} updateItem={(diff) => ctx.updateItem(diff)} />
 }
 
-// const recordFactory = () => [] as UremontReviewModel[]
 const recordFactory = () =>
   RenderedArray({
     Component: ItemRender,
@@ -99,19 +98,11 @@ export const Sample = memo(() => {
               })
             )
 
-            switch (true) {
-              case !!_customPagesLimit:
-                // @ts-ignore
-                if (_customPagesLimit > paginationRef.current.page) paginationRef.current.page += 1
-                // else setLoading(false)
-                break
-              case paginationRef.current.pagesCount > paginationRef.current.page:
-                paginationRef.current.page += 1
-                break
-              default:
-                setHasNextPage(false)
-                break
-            }
+            if (!!_customPagesLimit) {
+              if (_customPagesLimit > paginationRef.current.page) paginationRef.current.page += 1
+              // else setLoading(false)
+            } else if (paginationRef.current.pagesCount > paginationRef.current.page) paginationRef.current.page += 1
+            else setHasNextPage(false)
           },
         },
       }),

@@ -1,4 +1,5 @@
 const { spawn } = require('child_process')
+const { sep } = require('path')
 const dotenv = require('dotenv')
 
 const dotEnvTypes = ['.deploy', '.production', '']
@@ -9,7 +10,12 @@ const dotEnvTypes = ['.deploy', '.production', '']
   })
 })
 
-const commands = ['react-scripts build', 'gh-pages -d build']
+const commands = [
+  //
+  'react-scripts build',
+  `cp build${sep}index.html build${sep}404.html`,
+  'gh-pages -d build',
+]
 
 const executor = async (commands) => {
   for (const row of commands) {
